@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txt_app_size">24sp</dimen>
+    <dimen name="margin_border_btn_size">10dp</dimen>
+
+</resources>

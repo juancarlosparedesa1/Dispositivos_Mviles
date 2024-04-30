@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyThirdApp</string>
+    <string name="btn_login_text">Ingresar</string>
+</resources>
