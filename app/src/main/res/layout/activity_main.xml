@@ -15,9 +15,9 @@
         android:layout_margin="10dp">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,11 +48,12 @@
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/btn_height"
                 android:layout_margin="10dp"
-                android:text="Login"
+                android:backgroundTint="@color/blue"
                 android:drawableLeft="@drawable/baseline_login_24"
-                android:textSize="20dp" />
+                android:text="@string/btn_login_text"
+                android:textSize="@dimen/btn_text_size_18" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
