@@ -1,14 +1,10 @@
 package com.paredes.mythirdapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.paredes.mythirdapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -41,27 +37,69 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //con binding
-        binding.btnLogin.setOnClickListener {
-            if (binding.etxtUser.text.toString() == "admin" && binding.etxtPassword.text.toString() == "admin") {
-                Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+        initListeners()
 
-            } else {
-                Toast.makeText(this, "Credenciales incorrectas!", Toast.LENGTH_SHORT).show()
+        /*  //con binding
+         binding.btnLogin.setOnClickListener {
+            if (binding.etxtUser.text.toString() == "admin" && binding.etxtPassword.text.toString() == "admin") {
+                 Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+
+             } else {
+                 Toast.makeText(this, "Credenciales incorrectas!", Toast.LENGTH_SHORT).show()
+             }*/
+
+    }
+
+    private fun initListeners() {
+        binding.btnLogin.setOnClickListener {
+            //Capturo
+            var loginUserCase = LoginUserCase() //instancia
+
+            var result = loginUserCase(//setear
+                binding.etxtUser.text.toString(),
+                binding.etxtPassword.text.toString()
+            )
+            //desempaquetamos
+            result.onSuccess {
+                var intentToConstraintActivity = Intent(
+                    this,
+                    ConstraintActivity::class.java
+                )
+                intentToConstraintActivity.putExtra("idUser",it)
+                startActivity(intentToConstraintActivity)
             }
 
+            result.onFailure {
+                Toast.makeText(
+                    this,
+                    it.message.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            //valida con if si el usuario y la contraseña son validos
+            //esto lo hicimos aqui, comentado porque ya existe un UserCase
+            /*  if (binding.etxtUser.text.toString() == "admin" && binding.etxtPassword.text.toString() == "admin") {
+                  Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+                  startActivity(a)
+
+              } else {
+                  Toast.makeText(this, "Credenciales incorrectas!", Toast.LENGTH_SHORT).show()
+              }*/
         }
-
-
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("UCE","Metodo onStart")
+        Log.d("UCE", "Metodo onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("UCE","Metodo onResume")
+        Log.d("UCE", "Metodo onResume")
     }
+
+
 }
+
+

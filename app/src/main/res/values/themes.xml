@@ -7,7 +7,7 @@
     <style name="Theme.MyThirdApp" parent="Base.Theme.MyThirdApp" />
     
     <style name="buttonBase">
-        <item name="android:padding">10dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:textSize">@dimen/text_size_18</item>
     </style>
     <style name="ButtonGreen" parent="buttonBase">
