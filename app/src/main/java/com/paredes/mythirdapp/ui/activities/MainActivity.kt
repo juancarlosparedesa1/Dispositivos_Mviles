@@ -1,10 +1,12 @@
-package com.paredes.mythirdapp
+package com.paredes.mythirdapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.paredes.mythirdapp.data.repository.ListUsers
+import com.paredes.mythirdapp.userCase.LoginUserCase
 import com.paredes.mythirdapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -53,19 +55,20 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.btnLogin.setOnClickListener {
             //Capturo
-            var loginUserCase = LoginUserCase() //instancia
+            var loginUserCase = LoginUserCase(ListUsers()) //instancia(ahora inyeccion de dependencias)
 
             var result = loginUserCase(//setear
                 binding.etxtUser.text.toString(),
                 binding.etxtPassword.text.toString()
             )
             //desempaquetamos
-            result.onSuccess {
+            result.onSuccess {user->
                 var intentToConstraintActivity = Intent(
                     this,
                     ConstraintActivity::class.java
-                )
-                intentToConstraintActivity.putExtra("idUser",it)
+                ).apply {
+                    putExtra("idUser",user.id)
+                }
                 startActivity(intentToConstraintActivity)
             }
 

@@ -13,13 +13,13 @@
         android:theme="@style/Theme.MyThirdApp"
         tools:targetApi="31">
         <activity
-            android:name=".ConstrainActivity"
+            android:name=".ui.activities.ConstrainActivity"
             android:exported="false" />
         <activity
-            android:name=".ConstraintActivity"
+            android:name=".ui.activities.ConstraintActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

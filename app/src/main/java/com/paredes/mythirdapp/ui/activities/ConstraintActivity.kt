@@ -1,5 +1,6 @@
-package com.paredes.mythirdapp
+package com.paredes.mythirdapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -17,7 +18,22 @@ class ConstraintActivity : AppCompatActivity() {
         binding = ActivityConstraintBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonIngresar.setOnClickListener {
+        var idUser:Int?=null
+        intent.extras?.let {dato->
+            idUser=dato.getInt("idUser")
+        }
+        if (idUser!=null){
+            binding.idTextView.text=idUser.toString()
+        }else{
+            startActivity(
+                Intent(this,MainActivity::class.java))
+        }
+
+
+
+
+
+     /*   binding.buttonIngresar.setOnClickListener {
             if (binding.editTextUser.text.toString() == "user" && binding.editTextPassword.text.toString()=="password") {
                 Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
             }else{
@@ -25,7 +41,7 @@ class ConstraintActivity : AppCompatActivity() {
 
             }
 
-        }
+        }*/
 
 
     }
