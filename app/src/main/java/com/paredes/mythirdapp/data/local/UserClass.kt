@@ -1,4 +1,4 @@
-package com.paredes.mythirdapp.data
+package com.paredes.mythirdapp.data.local
 
 import android.util.Log
 

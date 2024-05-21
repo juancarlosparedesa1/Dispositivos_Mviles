@@ -1,6 +1,6 @@
-package com.paredes.mythirdapp.data.repository
+package com.paredes.mythirdapp.data.local.repository
 
-import com.paredes.mythirdapp.data.UserClass
+import com.paredes.mythirdapp.data.local.UserClass
 
 class ListUsers {
 

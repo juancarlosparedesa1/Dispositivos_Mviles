@@ -1,7 +1,7 @@
-package com.paredes.mythirdapp.userCase
+package com.paredes.mythirdapp.logic.usercases
 
-import com.paredes.mythirdapp.data.UserClass
-import com.paredes.mythirdapp.data.repository.ListUsers
+import com.paredes.mythirdapp.data.local.UserClass
+import com.paredes.mythirdapp.data.local.repository.ListUsers
 import java.lang.Exception
 
 class LoginUserCase (val listUsers: ListUsers){

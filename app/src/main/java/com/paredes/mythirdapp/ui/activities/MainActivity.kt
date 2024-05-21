@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.paredes.mythirdapp.data.repository.ListUsers
-import com.paredes.mythirdapp.userCase.LoginUserCase
+import com.paredes.mythirdapp.data.local.repository.ListUsers
+import com.paredes.mythirdapp.logic.usercases.LoginUserCase
 import com.paredes.mythirdapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
