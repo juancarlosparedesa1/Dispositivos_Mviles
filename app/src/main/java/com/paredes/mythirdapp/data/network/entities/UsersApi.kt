@@ -1,3 +1,5 @@
 package com.paredes.mythirdapp.data.network.entities
 
-class UsersApi : ArrayList<UsersApiItem>()
+data class UsersApi (
+    val users:List<UsersApiItem>
+)

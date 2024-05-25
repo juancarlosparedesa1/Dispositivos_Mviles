@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.paredes.mythirdapp.data.local.repository.ListUsers
 import com.paredes.mythirdapp.logic.usercases.LoginUserCase
 import com.paredes.mythirdapp.databinding.ActivityMainBinding
+import com.paredes.mythirdapp.logic.usercases.GetAllUsersUserCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,31 +58,40 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.btnLogin.setOnClickListener {
-            //Capturo
-            var loginUserCase = LoginUserCase(ListUsers()) //instancia(ahora inyeccion de dependencias)
 
-            var result = loginUserCase(//setear
-                binding.etxtUser.text.toString(),
-                binding.etxtPassword.text.toString()
-            )
-            //desempaquetamos
-            result.onSuccess {user->
-                var intentToConstraintActivity = Intent(
-                    this,
-                    ConstraintActivity::class.java
-                ).apply {
-                    putExtra("idUser",user.id)
-                }
-                startActivity(intentToConstraintActivity)
+            //hago el llamado para probar el llamado a la api:
+            lifecycleScope.launch(Dispatchers.IO) {
+                GetAllUsersUserCase().invoke()
             }
 
-            result.onFailure {
-                Toast.makeText(
-                    this,
-                    it.message.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+
+//            //Capturo
+//
+//            var loginUserCase = LoginUserCase(ListUsers()) //instancia(ahora inyeccion de dependencias)
+//
+//            var result = loginUserCase(//setear
+//                binding.etxtUser.text.toString(),
+//                binding.etxtPassword.text.toString()
+//            )
+//            //desempaquetamos
+//            result.onSuccess {user->
+//                var intentToConstraintActivity = Intent(
+//                    this,
+//                    ConstraintActivity::class.java
+//                ).apply {
+//                    putExtra("idUser",user.id)
+//                }
+//                startActivity(intentToConstraintActivity)
+//            }
+//
+//            result.onFailure {
+//                Toast.makeText(
+//                    this,
+//                    it.message.toString(),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+
 
             //valida con if si el usuario y la contraseña son validos
             //esto lo hicimos aqui, comentado porque ya existe un UserCase

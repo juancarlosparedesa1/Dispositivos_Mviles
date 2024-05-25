@@ -11,6 +11,12 @@ object RetrofitBase {
            addConverterFactory(GsonConverterFactory.create())
            .build()
    }
+    fun returnBaseRetrofitNews():Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://api.thenewsapi.com/v1/news/").
+            addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
 
 }

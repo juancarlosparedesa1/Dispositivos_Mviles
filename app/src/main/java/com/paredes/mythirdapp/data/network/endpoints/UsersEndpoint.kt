@@ -5,6 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface UsersEndpoint {
-    @GET
-    fun getAllUsers ():Response<List<UsersApi>>
+    @GET("users")
+    suspend fun getAllUsers ():Response<List<UsersApi>>
 }

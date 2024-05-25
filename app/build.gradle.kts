@@ -57,4 +57,8 @@ dependencies {
     //Gson serialization_deserialization
     implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
 
+    //Corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+
 }
