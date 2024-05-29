@@ -10,10 +10,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.torres.myapplication.data.network.entities.topNews.Data
 import com.torres.myapplication.databinding.ActivityConstrainBinding
 import com.torres.myapplication.logic.usercases.GetAllTopsNewUserCase
 import com.torres.myapplication.ui.adapters.NewsAdapter
+import com.torres.myapplication.ui.entities.NewsDataUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,8 +32,8 @@ class ConstrainActivity : AppCompatActivity() {
         initData()
     }
 
-    private fun initRecyclerView(items: List<Data>) {
-        binding.rvTopNews.adapter = NewsAdapter(items)
+    private fun initRecyclerView(items: List<NewsDataUI>) {
+        binding.rvTopNews.adapter = NewsAdapter(items){showTitle(it)}
         binding.rvTopNews.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
@@ -58,4 +60,11 @@ class ConstrainActivity : AppCompatActivity() {
             }
         }
     }
+    private fun showTitle(news: NewsDataUI){
+        val intent=Intent(this,MainActivity::class.java).apply {
+            putExtra("id",news.id)
+        }
+        startActivity(intent)
+    }
+
 }
